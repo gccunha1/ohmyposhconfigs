@@ -11,16 +11,6 @@
       "alignment": "left",
       "segments": [
         {
-          "type": "root",
-          "style": "plain",
-          "foreground": "#FFEB3B",
-          "background": "#a313a8",
-          "properties": {
-            "prefix": "",
-            "root_icon": "⚡"
-          }
-        },
-        {
           "type": "os",
           "style": "plain",
           "foreground": "#ffffff",
@@ -37,6 +27,7 @@
           "foreground": "#ffffff",
           "background": "#01579B",
           "properties": {
+            "prefix": "   ",
             "home_icon": "\uF7DB",
             "folder_icon": "\uF6D7",
             "folder_separator_icon": "<transparent> \uE0BD </>",
