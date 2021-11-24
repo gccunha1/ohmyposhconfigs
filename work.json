@@ -59,7 +59,7 @@
         {
           "type": "time",
           "style": "plain",
-          "foreground": "#3EC669",
+          "foreground": "#43CCEA",
           "background": "transparent",
           "properties": {
             "time_format": "15:04:05",
