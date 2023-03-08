@@ -1,23 +1,26 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
-  "Output": "",
+  "version": 2,
+  "console_title_template": "{{if .Root}} ⚡ {{end}}{{.Folder | replace \"~\" \"🏚\" }} @ {{.Host}}",
   "blocks": [
     {
+      "type": "prompt",
       "alignment": "left",
       "segments": [
         {
-          "background": "transparent",
+          "type": "path",
+          "style": "plain",
           "foreground": "#ffffff",
+          "background": "transparent",
+          "template": " \uf74a {{ .Path }} ",
           "properties": {
             "max_depth": 3,
-            "style": "agnoster_short",
-            "template": " \uf74a {{ .Path }} "
-          },
-          "style": "plain",
-          "type": "path"
+            "style": "agnoster_short"
+          }
         },
         {
-          "background": "transparent",
+          "type": "git",
+          "style": "plain",
           "foreground": "#00C853",
           "foreground_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}#FFEB3B{{ end }}",
@@ -25,73 +28,65 @@
             "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
             "{{ if gt .Behind 0 }}#B388FF{{ end }}"
           ],
+          "background": "transparent",
+          "template": "❮ {{ .HEAD }}{{ if .Staging.Changed }}<#FF6F00> \uf046 {{ .Staging.String }}</>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}❯",
           "properties": {
             "fetch_stash_count": true,
-            "fetch_status": true,
-            "template": "\u276e {{ .HEAD }}{{ if .Staging.Changed }}<#FF6F00> \uf046 {{ .Staging.String }}</>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }}\u276f"
-          },
-          "style": "plain",
-          "type": "git"
+            "fetch_status": true
+          }
         }
-      ],
-      "type": "prompt"
+      ]
     },
     {
+      "type": "prompt",
       "alignment": "right",
       "segments": [
         {
-          "background": "transparent",
-          "foreground": "#43CCEA",
-          "properties": {
-            "template": "  {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} "
-          },
+          "type": "session",
           "style": "plain",
-          "type": "session"
+          "foreground": "#43CCEA",
+          "background": "transparent",
+          "template": "  {{ if .SSHSession }}\uf817 {{ end }}{{ .UserName }}@{{ .HostName }} "
         },
         {
-          "background": "transparent",
-          "foreground": "#43CCEA",
-          "properties": {
-            "template": "<transparent> \ue0ba\ue0bc </>{{ .CurrentDate | date .Format }} ",
-            "time_format": "15:04:05"
-          },
+          "type": "time",
           "style": "plain",
-          "type": "time"
+          "foreground": "#43CCEA",
+          "background": "transparent",
+          "template": "<transparent> \ue0ba\ue0bc </>{{ .CurrentDate | date .Format }} ",
+          "properties": {
+            "time_format": "15:04:05"
+          }
         }
-      ],
-      "type": "prompt"
+      ]
     },
     {
+      "type": "prompt",
       "alignment": "left",
-      "newline": true,
       "segments": [
         {
-          "background": "#910000",
-          "foreground": "#ffffff",
-          "powerline_symbol": "\ue0b0",
-          "properties": {
-            "template": "<transparent> \uf12a</> {{ if gt .Code 0 }}\uf00d {{ .Meaning }}{{ else }}\uf42e{{ end }} "
-          },
+          "type": "exit",
           "style": "powerline",
-          "type": "exit"
+          "powerline_symbol": "\ue0b0",
+          "foreground": "#ffffff",
+          "background": "#910000",
+          "template": "<transparent> \uf12a</> {{ if gt .Code 0 }}\uf00d {{ .Meaning }}{{ else }}\uf42e{{ end }} "
         },
         {
+          "type": "exit",
+          "style": "plain",
           "foreground": "#ffffff",
           "foreground_templates": [
             "{{ if gt .Code 0 }}#ff0000{{ end }}"
           ],
+          "template": " \uf483  ",
           "properties": {
-            "always_enabled": true,
-            "template": "\uf061 "
-          },
-          "style": "plain",
-          "type": "exit"
+            "always_enabled": true
+          }
         }
       ],
-      "type": "prompt"
+      "newline": true
     }
   ],
-  "console_title_template": "{{if .Root}} \u26a1 {{end}}{{.Folder | replace \"~\" \"🏚\" }} @ {{.Host}}",
-  "osc99": true,
-  "version": 1
+  "osc99": true
 }
